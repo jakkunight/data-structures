@@ -22,6 +22,16 @@ int main(){
 	for(unsigned int i = 0; i < artists.length(); i++){
 		printf("Artist #%li: %s\n", i, ((UTAITE*)(artists.element(i)))->name);
 	}
+	artists.dequeue();
+	printf("Current artist: %s\n", ((UTAITE*)(artists.next()))->name);
+	for(unsigned int i = 0; i < artists.length(); i++){
+		printf("Artist #%li: %s\n", i, ((UTAITE*)(artists.element(i)))->name);
+	}
+	artists.enqueue((char*)(new UTAITE("Soraru", 34)));
+	printf("Current artist: %s\n", ((UTAITE*)(artists.next()))->name);
+	for(unsigned int i = 0; i < artists.length(); i++){
+		printf("Artist #%li: %s\n", i, ((UTAITE*)(artists.element(i)))->name);
+	}
 	return 0;
 }
 
