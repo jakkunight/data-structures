@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdata_structures.a CMakeFiles/data_structures.dir/sources/data_structures.cpp.o
+/usr/bin/ranlib libdata_structures.a

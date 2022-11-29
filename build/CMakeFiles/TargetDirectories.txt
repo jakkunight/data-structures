@@ -1,0 +1,4 @@
+/root/cpp-practices/data-structures/build/CMakeFiles/data_structures.dir
+/root/cpp-practices/data-structures/build/CMakeFiles/ds.dir
+/root/cpp-practices/data-structures/build/CMakeFiles/edit_cache.dir
+/root/cpp-practices/data-structures/build/CMakeFiles/rebuild_cache.dir
