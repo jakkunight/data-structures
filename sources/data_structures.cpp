@@ -13,7 +13,7 @@ NODE::NODE(char* buffer, long unsigned int l){
 	prev = nullptr;
 }
 NODE::~NODE(){
-	delete data;
+	delete[] data;
 }
 
 STACK::STACK(){
@@ -66,6 +66,66 @@ char* STACK::element(unsigned int index){
 	for(unsigned int i = 0; i < index; i++){
 		if(aux->prev != nullptr){
 			aux = aux->prev;
+		}
+	}
+	return aux->data;
+}
+
+QUEUE::QUEUE(){
+	current = nullptr;
+	size = 0;
+}
+QUEUE::~QUEUE(){
+	delete current;
+}
+void QUEUE::enqueue(char* buffer){
+	if(size == 0){
+		current = new NODE;
+		current->data = buffer;
+	}else{
+		NODE* aux = new NODE;
+		aux->data = buffer;
+		NODE* last = current;
+		for(unsigned int i = 0; i < size; i++){
+			if(last->next != nullptr){
+				last = last->next;
+			}
+		}
+		last->next = aux;
+		aux->prev = last;
+	}
+	size++;
+}
+void QUEUE::dequeue(){
+	if(size == 0){
+		return;
+	}
+	if(size == 1){
+		delete current;
+	}else{
+		current = current->next;
+		delete current->prev;
+		current->prev = nullptr;
+	}
+	size--;
+}
+char* QUEUE::next(){
+	return current->data;
+}
+char* QUEUE::last(){
+	NODE* aux = current;
+	for(unsigned int i = 0; i < size; i++){
+		if(aux->next != nullptr){
+			aux = aux->next;
+		}
+	}
+	return aux->data;
+}
+char* QUEUE::element(unsigned int index){
+	NODE* aux = current;
+	for(unsigned int i = 0; i < index; i++){
+		if(aux->next != nullptr){
+			aux = aux->next;
 		}
 	}
 	return aux->data;

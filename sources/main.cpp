@@ -12,13 +12,13 @@ struct UTAITE {
 };
 
 int main(){
-	STACK artists = STACK();
-	artists.push((char*)(new UTAITE("Soraru", 34)));
-	printf("Current artist: %s\n", ((UTAITE*)(artists.top()))->name);
-	artists.push((char*)(new UTAITE("MafuMafu", 31)));
-	printf("Current artist: %s\n", ((UTAITE*)(artists.top()))->name);
-	artists.push((char*)(new UTAITE("Sou", 29)));
-	printf("Current artist: %s\n", ((UTAITE*)(artists.top()))->name);
+	QUEUE artists = QUEUE();
+	artists.enqueue((char*)(new UTAITE("Soraru", 34)));
+	printf("Current artist: %s\n", ((UTAITE*)(artists.next()))->name);
+	artists.enqueue((char*)(new UTAITE("MafuMafu", 31)));
+	printf("Current artist: %s\n", ((UTAITE*)(artists.next()))->name);
+	artists.enqueue((char*)(new UTAITE("Sou", 29)));
+	printf("Current artist: %s\n", ((UTAITE*)(artists.next()))->name);
 	for(unsigned int i = 0; i < artists.length(); i++){
 		printf("Artist #%li: %s\n", i, ((UTAITE*)(artists.element(i)))->name);
 	}

@@ -31,8 +31,20 @@ class STACK {
 
 class QUEUE {
 	private:
-		
+		NODE* current;
+		unsigned int size;
 	public:
+	QUEUE();
+	~QUEUE();
+	void enqueue(char* buffer);
+	void dequeue();
+	char* next();
+	char* last();
+	char* element(unsigned int index);
+	unsigned int length(){
+		return size;
+	}
+	
 };
 
 class DQUEUE {
