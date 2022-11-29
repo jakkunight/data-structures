@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/ds.dir/sources/main.cpp.o -o ds  libdata_structures.a 
