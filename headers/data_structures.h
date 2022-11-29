@@ -15,15 +15,18 @@ struct NODE {
 class STACK {
 	private:
 		NODE* current;
-		unsigned int length;
+		unsigned int size;
 	public:
 		STACK();
 		~STACK();
-		void push(NODE it);
+		void push(char* buffer);
 		void pop();
-		NODE top();
-		NODE bottom();
-		NODE element(unsigned int index);
+		char* top();
+		char* bottom();
+		char* element(unsigned int index);
+		unsigned int length(){
+			return size;
+		}
 };
 
 class QUEUE {

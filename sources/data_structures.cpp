@@ -8,8 +8,7 @@ NODE::NODE(){
 }
 NODE::NODE(char* buffer, long unsigned int l){
 	length = l;
-	data = new char[l];
-	*data = *buffer;
+	data = buffer;
 	next = nullptr;
 	prev = nullptr;
 }
@@ -18,63 +17,56 @@ NODE::~NODE(){
 }
 
 STACK::STACK(){
-	length = 0;
+	size = 0;
 	current = nullptr;
 }
 STACK::~STACK(){
 	delete current;
 }
-void STACK::push(NODE it){
-	if(length == 0 && current == nullptr){
+void STACK::push(char* buffer){
+	if(size == 0 && current == nullptr){
 		current = new NODE;
-		*current = it;
+		current->data = buffer;
 	}else{
-		it.prev = current;
-		current = new NODE;
-		*current = it;
+		NODE* aux = new NODE;
+		aux->data = buffer;
+		aux->prev = current;
+		current = aux;
 		current->prev->next = current;
 	}
-	length++;
+	size++;
 }
 void STACK::pop(){
-	if(length == 0 && current == nullptr){
+	if(size == 0 && current == nullptr){
 		return;
 	}
-	if(length == 1){
+	if(size == 1){
 		delete current;
 	}else{
 		current = current->prev;
 		delete current->next;
 		current->next = nullptr;
 	}
-	length--;
+	size--;
 }
-NODE STACK::top(){
-	return *current;
+char* STACK::top(){
+	return current->data;
 }
-NODE STACK::bottom(){
-	NODE buffer;
-	if(length == 0){
-		return buffer;
-	}
-	if(length == 1){
-		buffer = *current;
-	}else{
-		buffer = *(current->prev);
-		for(unsigned int i = 0; i < length - 1; i++){
-			if(buffer.prev != nullptr){
-				buffer = *(buffer.prev);
-			}
+char* STACK::bottom(){
+	NODE* aux = current;
+	for(unsigned int i = 0; i < size; i++){
+		if(aux->prev != nullptr){
+			aux = aux->prev;
 		}
 	}
-	return buffer;
+	return aux->data;
 }
-NODE STACK::element(unsigned int index){
-	NODE buffer = *(current->prev);
-	for(unsigned int i = 0; i < index - 1; i++){
-		if(buffer.prev != nullptr){
-			buffer = *(buffer.prev);
+char* STACK::element(unsigned int index){
+	NODE* aux = current;
+	for(unsigned int i = 0; i < index; i++){
+		if(aux->prev != nullptr){
+			aux = aux->prev;
 		}
 	}
-	return buffer;
+	return aux->data;
 }
